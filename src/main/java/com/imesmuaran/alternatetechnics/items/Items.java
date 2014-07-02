@@ -6,8 +6,7 @@ import net.minecraft.item.Item;
 
 public class Items
 {
-
-    //** Item Int **//
+    //** Item Init **//
     public static Item burgerItem;
     public static Item dropItem;
 
