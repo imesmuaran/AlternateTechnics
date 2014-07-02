@@ -1,5 +1,6 @@
 package com.imesmuaran.alternatetechnics;
 
+import com.imesmuaran.alternatetechnics.handler.ConfigurationHandler;
 import com.imesmuaran.alternatetechnics.proxy.IProxy;
 import com.imesmuaran.alternatetechnics.reference.Reference;
 import cpw.mods.fml.common.Mod;
@@ -21,6 +22,7 @@ public class AlternateTechnics
     public void preInit (FMLPreInitializationEvent event)
     {
         //**Network, Config, Blocks, Items**//
+        ConfigurationHandler.init(event.getSuggestedConfigurationFile());
     }
 
     @Mod.EventHandler
