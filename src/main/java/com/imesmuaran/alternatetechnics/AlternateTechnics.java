@@ -3,6 +3,7 @@ package com.imesmuaran.alternatetechnics;
 import com.imesmuaran.alternatetechnics.handler.ConfigurationHandler;
 import com.imesmuaran.alternatetechnics.proxy.IProxy;
 import com.imesmuaran.alternatetechnics.reference.Reference;
+import com.imesmuaran.alternatetechnics.utility.LogHelper;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -23,17 +24,19 @@ public class AlternateTechnics
     {
         //**Network, Config, Blocks, Items**//
         ConfigurationHandler.init(event.getSuggestedConfigurationFile());
+
+        LogHelper.info("Pre Initialization complete!");
     }
 
     @Mod.EventHandler
     public void init (FMLInitializationEvent event)
     {
-
+        LogHelper.info("Initialization complete!");
     }
 
     @Mod.EventHandler
     public void postInit (FMLPostInitializationEvent event)
     {
-
+        LogHelper.info("Post Initialization complete!");
     }
 }
