@@ -10,16 +10,14 @@ public class ExtVanilla
     public static void recipes()
     {
         ItemStack gravelStack = new ItemStack(Blocks.gravel);
-        ItemStack blackWoolStack = new ItemStack(Blocks.wool, 42, 15);
+       //ItemStack blackWoolStack = new ItemStack(Blocks.wool, 42, 15);
 
-        ItemStack flintStack = new ItemStack(Items.flint, 4);
+        ItemStack flintStack = new ItemStack(Items.flint, 1);
         ItemStack diamondStack = new ItemStack(Items.diamond);
 
         GameRegistry.addShapelessRecipe(flintStack, gravelStack);
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.ender_pearl, 4),
-                diamondStack, diamondStack, diamondStack,
-                diamondStack, diamondStack, diamondStack,
-                diamondStack, diamondStack, diamondStack);
+        GameRegistry.addRecipe(new ItemStack(Items.ender_pearl, 4),
+                "yyy","y y","yyy", 'y',diamondStack);
 
     }
 }

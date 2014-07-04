@@ -1,5 +1,8 @@
 
+itemGroup.tabAT=Alternate Technics
+
 item.burgerItem.name=Burger
-item.dropItem.name=Drop Item
 
 tile.cheeseBlock.name=Cheese Block
+tile.burger.name=Burger
+tile.verticalConveyor.name=Vertical Conveyor

@@ -1,19 +1,20 @@
 package com.imesmuaran.alternatetechnics;
 
-import com.imesmuaran.alternatetechnics.blocks.Blocks;
+import com.imesmuaran.alternatetechnics.blocks.BlockLoader;
 import com.imesmuaran.alternatetechnics.crafting.ExtVanilla;
 import com.imesmuaran.alternatetechnics.handler.ConfigurationHandler;
-import com.imesmuaran.alternatetechnics.items.ItemBurger;
-import com.imesmuaran.alternatetechnics.items.Items;
+import com.imesmuaran.alternatetechnics.items.ItemLoader;
 import com.imesmuaran.alternatetechnics.proxy.IProxy;
 import com.imesmuaran.alternatetechnics.reference.Reference;
+import com.imesmuaran.alternatetechnics.tileentities.TileEntityLoader;
 import com.imesmuaran.alternatetechnics.utility.LogHelper;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
@@ -27,19 +28,31 @@ public class AlternateTechnics
     @SidedProxy (clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
     public static IProxy proxy;
 
-
+    //** Creative Tab **//
+    public static CreativeTabs tabAT = new CreativeTabs("tabAT") {
+        @Override
+        @SideOnly(Side.CLIENT)
+        public Item getTabIconItem() {
+            return ItemLoader.burgerItem;
+        }
+    };
     @Mod.EventHandler
     public void preInit (FMLPreInitializationEvent event)
     {
         //** Network, Config, New Blocks, New Items **//
 
+
+
         //** Items **//
-        Items.Items();
+        ItemLoader.Items();
         LogHelper.info("Costume Items loaded!");
 
         //** Blocks **//
-        Blocks.Blocks();
+        BlockLoader.Blocks();
         LogHelper.info("Costume Blocks loaded!");
+
+        //** Other Block Loader **//
+        TileEntityLoader.TileEntities();
 
         ConfigurationHandler.init(event.getSuggestedConfigurationFile());
 

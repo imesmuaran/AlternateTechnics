@@ -12,5 +12,6 @@ public class ItemLoader
     {
         burgerItem = new ItemBurger();
         GameRegistry.registerItem(burgerItem, "burgerItem");
+
     }
 }
