@@ -17,8 +17,8 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.7.2-0.1"
-group= "com.imesmuaran.at" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+version = "1.7.2-0.1.4"
+group= "com.imesmuaran.alternatetechnics" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "AlternateTechnics"
 
 minecraft {

@@ -1,0 +1,2 @@
+@echo
+gradlew.bat build
