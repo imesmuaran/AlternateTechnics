@@ -1,5 +1,6 @@
 package com.imesmuaran.alternatetechnics.items;
 
+import com.imesmuaran.alternatetechnics.utility.LogHelper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 
@@ -12,6 +13,8 @@ public class ItemLoader
     {
         burgerItem = new ItemBurger();
         GameRegistry.registerItem(burgerItem, "burgerItem");
+
+        LogHelper.info("Items loaded!");
 
     }
 }

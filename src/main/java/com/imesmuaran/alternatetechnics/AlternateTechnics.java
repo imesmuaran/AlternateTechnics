@@ -1,7 +1,7 @@
 package com.imesmuaran.alternatetechnics;
 
 import com.imesmuaran.alternatetechnics.blocks.BlockLoader;
-import com.imesmuaran.alternatetechnics.crafting.ExtVanilla;
+import com.imesmuaran.alternatetechnics.crafting.RecipeLoader;
 import com.imesmuaran.alternatetechnics.handler.ConfigurationHandler;
 import com.imesmuaran.alternatetechnics.items.ItemLoader;
 import com.imesmuaran.alternatetechnics.proxy.IProxy;
@@ -42,14 +42,11 @@ public class AlternateTechnics
         //** Network, Config, New Blocks, New Items **//
 
 
-
         //** Items **//
         ItemLoader.Items();
-        LogHelper.info("Costume Items loaded!");
 
         //** Blocks **//
         BlockLoader.Blocks();
-        LogHelper.info("Costume Blocks loaded!");
 
         //** Other Block Loader **//
         TileEntityLoader.TileEntities();
@@ -63,8 +60,8 @@ public class AlternateTechnics
     public void init (FMLInitializationEvent event)
     {
         //** Recipes **//
-        ExtVanilla.recipes();
-        LogHelper.info("Costume Recipes loaded!");
+        RecipeLoader.recipes();
+
         LogHelper.info("Initialization complete!");
     }
 
