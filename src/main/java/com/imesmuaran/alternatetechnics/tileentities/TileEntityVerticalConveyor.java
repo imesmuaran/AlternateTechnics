@@ -11,46 +11,35 @@ public class TileEntityVerticalConveyor extends TileEntity
 
     public TileEntityVerticalConveyor()
     {
-        //timer = 60;
+
     }
 
     @Override
     public void updateEntity()
     {
-        if (!worldObj.isRemote && check(xCoord,yCoord,zCoord) == 0) {
+        if (!worldObj.isRemote && check(xCoord,yCoord,zCoord) == false) {
 
             worldObj.setBlock(xCoord + 1, yCoord, zCoord, Blocks.fence);
 
-        } else if (!worldObj.isRemote && check(xCoord,yCoord,zCoord) == 1 ) {
+        } else if (!worldObj.isRemote && check(xCoord,yCoord,zCoord)) {
 
             worldObj.setBlock(xCoord + 1, yCoord, zCoord, Blocks.planks);
 
-        } /*else if (timer > 0) {
-
-            timer--;
-
-        } else {
-
-            timer = -1;
-
-        } */
+        }
     }
 
-    private int check(int x, int y, int z)
+    private boolean check(int x, int y, int z)
     {
         if (worldObj.getBlock(x,y + 1,z) == BlockLoader.verticalConveyor && worldObj.getBlock(x,y - 1,z) == BlockLoader.verticalConveyor) {
-            return 0;
 
-        } else if (worldObj.getBlock(x,y + 1,z) == BlockLoader.verticalConveyor && worldObj.getBlock(x,y - 1,z) != BlockLoader.verticalConveyor) {
-
-            return 1;
-
-        } else if (worldObj.getBlock(x,y - 1,z) == BlockLoader.verticalConveyor && worldObj.getBlock(x,y + 1,z) != BlockLoader.verticalConveyor) {
-
-            return 1;
+            worldObj.setBlockMetadataWithNotify(x,y,z, 1, 3);
+            return false;
 
         } else {
-            return 1;
+
+            worldObj.setBlockMetadataWithNotify(x,y,z, 2, 3);
+            return true;
+
         }
     }
 
