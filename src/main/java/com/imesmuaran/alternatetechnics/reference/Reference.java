@@ -1,8 +1,5 @@
 package com.imesmuaran.alternatetechnics.reference;
 
-
-import com.imesmuaran.alternatetechnics.AlternateTechnics;
-
 public class Reference
 {
     //** Information **//
@@ -13,4 +10,7 @@ public class Reference
     //** Classes **//
     public static final String CLIENT_PROXY_CLASS = "com.imesmuaran.alternatetechnics.proxy.ClientProxy";
     public static final String SERVER_PROXY_CLASS = "com.imesmuaran.alternatetechnics.proxy.ServerProxy";
+
+    //** RenderProp **//
+    public static int RENDER_BUCKET_BLOCK_ID;
 }

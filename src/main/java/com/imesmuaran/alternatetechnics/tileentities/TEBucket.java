@@ -21,11 +21,6 @@ public class TEBucket extends TileEntity {
         return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbtTag);
     }
 
-   /* @Override
-    public void onDataPacket(NetworkManager net,  S35PacketUpdateTileEntity packet) {
-        readFromNBT(packet.customParam1);
-    }
-*/
     @Override
     public void writeToNBT(NBTTagCompound compound)
     {

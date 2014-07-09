@@ -1,6 +1,7 @@
 package com.imesmuaran.alternatetechnics.blocks;
 
 import com.imesmuaran.alternatetechnics.AlternateTechnics;
+import com.imesmuaran.alternatetechnics.reference.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -42,5 +43,15 @@ public class BlockBucket extends Block {
     @Override
     public void setBlockBoundsForItemRender() {
         setBlockBounds(0.125F, 0F, 0.125F, 0.875F, 0.875F, 0.875F);
+    }
+
+    @Override
+    public boolean renderAsNormalBlock() {
+        return false;
+    }
+
+    @Override
+    public int getRenderType() {
+        return Reference.RENDER_BUCKET_BLOCK_ID;
     }
 }
