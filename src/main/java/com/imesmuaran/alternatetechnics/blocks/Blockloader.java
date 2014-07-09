@@ -15,6 +15,7 @@ public class BlockLoader
     public static Block burgerBlock;
     public static Block verticalConveyor;
     public static Block waterwheelBase;
+    public static Block bucketBlock;
 
     public static void Blocks()
     {
@@ -26,6 +27,8 @@ public class BlockLoader
         GameRegistry.registerBlock(verticalConveyor, "verticalConveyor");
         waterwheelBase = new BlockWaterwheelBase(Material.iron);
         GameRegistry.registerBlock(waterwheelBase, "waterwheelBase");
+        bucketBlock = new BlockBucket(Material.iron);
+        GameRegistry.registerBlock(bucketBlock, "bucketBlock");
 
         LogHelper.info("Blocks loaded!");
     }

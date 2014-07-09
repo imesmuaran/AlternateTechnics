@@ -8,11 +8,14 @@ public class ItemLoader
 {
     //** Item Init **//
     public static Item burgerItem;
+    public static Item droidItem;
 
     public static void Items()
     {
         burgerItem = new ItemBurger();
         GameRegistry.registerItem(burgerItem, "burgerItem");
+        droidItem = new ItemDroid();
+        GameRegistry.registerItem(droidItem, "droidItem");
 
         LogHelper.info("Items loaded!");
 

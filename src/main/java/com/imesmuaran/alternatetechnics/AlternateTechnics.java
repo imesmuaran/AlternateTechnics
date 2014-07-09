@@ -1,13 +1,18 @@
 package com.imesmuaran.alternatetechnics;
 
 import com.imesmuaran.alternatetechnics.blocks.BlockLoader;
+import com.imesmuaran.alternatetechnics.client.renderer.RenderDroid;
 import com.imesmuaran.alternatetechnics.crafting.RecipeLoader;
+import com.imesmuaran.alternatetechnics.entities.EntityDroid;
+import com.imesmuaran.alternatetechnics.entities.EntityLoader;
 import com.imesmuaran.alternatetechnics.handler.ConfigurationHandler;
 import com.imesmuaran.alternatetechnics.items.ItemLoader;
+import com.imesmuaran.alternatetechnics.proxy.ClientProxy;
 import com.imesmuaran.alternatetechnics.proxy.IProxy;
 import com.imesmuaran.alternatetechnics.reference.Reference;
 import com.imesmuaran.alternatetechnics.tileentities.TileEntityLoader;
 import com.imesmuaran.alternatetechnics.utility.LogHelper;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -41,15 +46,15 @@ public class AlternateTechnics
     {
         //** Network, Config, New Blocks, New Items **//
 
-
         //** Items **//
         ItemLoader.Items();
 
         //** Blocks **//
         BlockLoader.Blocks();
 
-        //** Other Block Loader **//
+        //** Tile- & Entity Loader **//
         TileEntityLoader.TileEntities();
+        EntityLoader.EntityLoader();
 
         ConfigurationHandler.init(event.getSuggestedConfigurationFile());
 
@@ -68,6 +73,8 @@ public class AlternateTechnics
     @Mod.EventHandler
     public void postInit (FMLPostInitializationEvent event)
     {
+        //ClientProxy.initRenderers();
+        RenderingRegistry.registerEntityRenderingHandler(EntityDroid.class, new RenderDroid());
         LogHelper.info("Post Initialization complete!");
     }
 }
