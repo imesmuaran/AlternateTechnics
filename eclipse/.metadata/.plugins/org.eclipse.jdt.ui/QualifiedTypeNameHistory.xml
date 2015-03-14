@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="net.minecraft.client.renderer.entity.Render"/>
+<fullyQualifiedTypeName name="com.imesmuaran.alternatetechnics.client.models.ModelFirepit"/>
+<fullyQualifiedTypeName name="net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer"/>
+<fullyQualifiedTypeName name="com.imesmuaran.alternatetechnics.tileentities.TEFirepit"/>
+</qualifiedTypeNameHistroy>
