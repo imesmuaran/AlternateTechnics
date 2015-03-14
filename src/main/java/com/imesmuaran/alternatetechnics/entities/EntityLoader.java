@@ -5,7 +5,7 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 
 public class EntityLoader {
 
-    public static void EntityLoader() {
+    public static void entityLoader() {
 
         EntityRegistry.registerModEntity(EntityDroid.class, "EntityDroid", 0, AlternateTechnics.instance, 80, 3, true);
 

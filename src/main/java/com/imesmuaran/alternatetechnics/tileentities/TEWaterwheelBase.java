@@ -27,7 +27,8 @@ public class TEWaterwheelBase extends TileEntity {
         }
     }
 
-    private boolean check() {
+    @SuppressWarnings("unused")
+	private boolean check() {
         for (int layer1 = 0; layer1 == 4; layer1++) {
             for (int layer2 =0; layer2 == 4; layer2++) {
                 if (side() == true) {

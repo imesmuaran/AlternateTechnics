@@ -50,7 +50,7 @@ public class AlternateTechnics
 
         //** Tile- & Entity Loader **//
         TileEntityLoader.TileEntities();
-        EntityLoader.EntityLoader();
+        EntityLoader.entityLoader();
 
         //** Proxies **//
         proxy.initRenderers();
