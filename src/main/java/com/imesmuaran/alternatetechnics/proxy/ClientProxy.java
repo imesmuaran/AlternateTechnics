@@ -25,9 +25,9 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityDroid.class, new RenderDroid(model));
         MinecraftForgeClient.registerItemRenderer(ItemLoader.droidItem, new RenderDroidItem(model));
 
-        RendererBucketBlock bucketRender = new RendererBucketBlock();
-        RenderingRegistry.registerBlockHandler(bucketRender);
-        Reference.RENDER_BUCKET_BLOCK_ID = bucketRender.getRenderId();
+        //RendererBucketBlock bucketRender = new RendererBucketBlock();
+        //RenderingRegistry.registerBlockHandler(bucketRender);
+        //Reference.RENDER_BUCKET_BLOCK_ID = bucketRender.getRenderId();
 
     }
 
