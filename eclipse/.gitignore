@@ -1,0 +1,5 @@
+#Always different files
+logs/
+.metadata/
+usernamecache.json
+
