@@ -1,5 +1,8 @@
 package com.imesmuaran.alternatetechnics.tileentities;
 
-public class TEFirepit {
+import net.minecraft.tileentity.TileEntity;
 
+public class TEFirepit extends TileEntity{
+	
+	
 }
