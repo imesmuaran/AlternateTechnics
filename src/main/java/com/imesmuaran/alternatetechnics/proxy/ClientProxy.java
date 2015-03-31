@@ -10,6 +10,7 @@ import com.imesmuaran.alternatetechnics.client.renderer.RenderBucket;
 import com.imesmuaran.alternatetechnics.client.renderer.RenderDroid;
 import com.imesmuaran.alternatetechnics.client.renderer.RenderDroidItem;
 import com.imesmuaran.alternatetechnics.client.renderer.RenderFirepit;
+import com.imesmuaran.alternatetechnics.client.renderer.RenderFirepitItem;
 import com.imesmuaran.alternatetechnics.entities.EntityDroid;
 import com.imesmuaran.alternatetechnics.items.ItemLoader;
 import com.imesmuaran.alternatetechnics.tileentities.TEBucket;
@@ -40,6 +41,7 @@ public class ClientProxy extends CommonProxy {
         // Firepit
         ModelFirepit modelFirepit = new ModelFirepit();
         ClientRegistry.bindTileEntitySpecialRenderer(TEFirepit.class, new RenderFirepit(modelFirepit));
+        MinecraftForgeClient.registerItemRenderer(ItemLoader.firepitItem, new RenderFirepitItem(modelFirepit));
         
         /* Methode ohne Itemrender (renderklassenkonstruktor ohne param)
          * TileEntitySpecialRenderer modelFirepit = new RenderFirepit();

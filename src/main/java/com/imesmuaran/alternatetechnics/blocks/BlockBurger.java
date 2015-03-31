@@ -1,6 +1,9 @@
 package com.imesmuaran.alternatetechnics.blocks;
 
+import java.util.Random;
+
 import com.imesmuaran.alternatetechnics.AlternateTechnics;
+import com.imesmuaran.alternatetechnics.items.ItemLoader;
 import com.imesmuaran.alternatetechnics.reference.Reference;
 import com.imesmuaran.alternatetechnics.utility.LogHelper;
 import cpw.mods.fml.relauncher.Side;
@@ -8,6 +11,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockCake;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
@@ -23,11 +27,37 @@ public class BlockBurger extends BlockCake
     protected IIcon burgerIcon;
     @SideOnly(Side.CLIENT)
     protected IIcon burgerIconBottom;
+    
+    private Item drop = ItemLoader.burgerItem;
+    private int meta = 0;
 
     public BlockBurger()
     {
         super();
         setBlockName("burger");
+    }
+    
+    public BlockBurger(int meta) {
+    	this();
+    	this.meta = meta;
+    }
+    
+    @Override
+    /**
+     * Called whenever the block is added into the world. Args: world, x, y, z
+     */
+    public void onBlockAdded(World p_149726_1_, int x, int y, int z) {
+    	p_149726_1_.setBlockMetadataWithNotify(x, y, z, this.meta, 2);
+    }
+    
+    @Override
+    public Item getItemDropped(int meta, Random random, int fortune) {
+        return this.drop;
+    }
+
+    @Override
+    public int damageDropped(int metadata) {
+        return this.meta;
     }
 
     //** Burger Texturen **//
@@ -64,6 +94,7 @@ public class BlockBurger extends BlockCake
     public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player)
     {
         this.fuelEat(world, x, y, z, player);
+        this.meta = world.getBlockMetadata(x, y, z);
     }
 
     @SideOnly(Side.CLIENT)

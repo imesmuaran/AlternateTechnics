@@ -1,16 +1,19 @@
 package com.imesmuaran.alternatetechnics.client.renderer;
 
-import com.imesmuaran.alternatetechnics.client.models.ModelDroid;
+import org.lwjgl.opengl.GL11;
+
+import com.imesmuaran.alternatetechnics.client.models.ModelFirepit;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
-import org.lwjgl.opengl.GL11;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
+import net.minecraftforge.client.IItemRenderer.ItemRendererHelper;
 
-public class RenderDroidItem implements IItemRenderer{
+public class RenderFirepitItem implements IItemRenderer{
+	private ModelFirepit model;
 
-    private ModelDroid model;
-
-    public RenderDroidItem(ModelDroid model) {
+    public RenderFirepitItem(ModelFirepit model) {
         this.model = model;
     }
 
@@ -31,18 +34,18 @@ public class RenderDroidItem implements IItemRenderer{
 
         switch (type) {
             case INVENTORY:
-            	GL11.glTranslatef(0, 0.13F, 0);
+            	GL11.glTranslatef(0, -1F, 0);
                 break;
             case EQUIPPED:
-                GL11.glTranslatef(-0.8F, -0.2F, 0.7F);
+            	GL11.glTranslatef(-0.8F, -0.2F, 0.7F);
                 break;
             case EQUIPPED_FIRST_PERSON:
-                GL11.glTranslatef(0, -0.7F, 0.7F);
+            	GL11.glTranslatef(0, -0.7F, 0.7F);
                 break;
             default:
         }
 
-        Minecraft.getMinecraft().getTextureManager().bindTexture(RenderDroid.texture);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(RenderFirepit.texture);
         model.render(null, 0, 0, 0, 0, 0, 0.0625F);
 
         GL11.glPopMatrix();
