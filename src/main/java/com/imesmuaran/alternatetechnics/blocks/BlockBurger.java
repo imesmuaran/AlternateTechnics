@@ -11,7 +11,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockCake;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
@@ -27,9 +29,6 @@ public class BlockBurger extends BlockCake
     protected IIcon burgerIcon;
     @SideOnly(Side.CLIENT)
     protected IIcon burgerIconBottom;
-    
-    private Item drop = ItemLoader.burgerItem;
-    private int meta = 0;
 
     public BlockBurger()
     {
@@ -37,27 +36,33 @@ public class BlockBurger extends BlockCake
         setBlockName("burger");
     }
     
-    public BlockBurger(int meta) {
-    	this();
-    	this.meta = meta;
-    }
-    
-    @Override
-    /**
-     * Called whenever the block is added into the world. Args: world, x, y, z
-     */
-    public void onBlockAdded(World p_149726_1_, int x, int y, int z) {
-    	p_149726_1_.setBlockMetadataWithNotify(x, y, z, this.meta, 2);
-    }
-    
     @Override
     public Item getItemDropped(int meta, Random random, int fortune) {
-        return this.drop;
+        return ItemLoader.burgerItem;
     }
 
     @Override
     public int damageDropped(int metadata) {
-        return this.meta;
+        return metadata;
+    }
+    
+    /**
+     * Returns the quantity of items to drop on block destruction.
+     */
+    @Override
+    public int quantityDropped(Random p_149745_1_)
+    {
+        return 1;
+    }
+    
+    @Override
+    /**
+     * Gets an item for the block being called on. Args: world, x, y, z
+     */
+    @SideOnly(Side.CLIENT)
+    public Item getItem(World p_149694_1_, int p_149694_2_, int p_149694_3_, int p_149694_4_)
+    {
+        return ItemLoader.burgerItem;
     }
 
     //** Burger Texturen **//
@@ -94,7 +99,6 @@ public class BlockBurger extends BlockCake
     public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player)
     {
         this.fuelEat(world, x, y, z, player);
-        this.meta = world.getBlockMetadata(x, y, z);
     }
 
     @SideOnly(Side.CLIENT)

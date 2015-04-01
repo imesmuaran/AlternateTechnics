@@ -22,7 +22,7 @@ public class BlockLoader
     {
         cheeseBlock = new BlockCheese(Material.ground);
         GameRegistry.registerBlock(cheeseBlock, "cheeseBlock");
-        burgerBlock = new BlockBurger(0);
+        burgerBlock = new BlockBurger();
         GameRegistry.registerBlock(burgerBlock, "burger");
         verticalConveyor = new VerticalConveyor(Material.iron);
         GameRegistry.registerBlock(verticalConveyor, "verticalConveyor");

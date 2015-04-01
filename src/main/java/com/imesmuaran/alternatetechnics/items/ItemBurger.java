@@ -65,7 +65,7 @@ public class ItemBurger extends Item
             return false;
         } else {
             if (player.canPlayerEdit(x,y,z,par7,stack)) {
-                world.setBlock(x,y+1,z, BlockLoader.burgerBlock);
+                world.setBlock(x,y+1,z, BlockLoader.burgerBlock, stack.getItemDamage(), 2);
                 --stack.stackSize;
                 return true;
             } else {

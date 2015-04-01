@@ -13,6 +13,7 @@ public class ItemFirepit extends Item {
     public ItemFirepit() {
         setCreativeTab(AlternateTechnics.tabAT);
         setUnlocalizedName("firepitItem");
+        setMaxStackSize(1);
     }
 
     //** Good example for onItemUse **//
