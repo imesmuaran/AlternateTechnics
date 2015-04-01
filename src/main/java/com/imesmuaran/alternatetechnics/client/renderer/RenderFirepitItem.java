@@ -42,6 +42,9 @@ public class RenderFirepitItem implements IItemRenderer{
             case EQUIPPED_FIRST_PERSON:
             	GL11.glTranslatef(0, -0.7F, 0.7F);
                 break;
+            case ENTITY:
+            	GL11.glTranslatef(0, -1.25F, 0F);
+            	break;
             default:
         }
 
