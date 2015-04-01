@@ -13,9 +13,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
 
 
@@ -27,6 +29,7 @@ public class BlockFirepit extends BlockContainer implements ITileEntityProvider{
 		
 		setLightLevel(1.0F);
 		setLightOpacity(0);
+		this.setTickRandomly(true);
 	}
 	
 	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
@@ -81,6 +84,53 @@ public class BlockFirepit extends BlockContainer implements ITileEntityProvider{
             f2 = (float)p_149734_4_ + p_149734_5_.nextFloat();
             p_149734_1_.spawnParticle("largesmoke", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
             p_149734_1_.spawnParticle("flame", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
+        }
+    }
+    
+    /**
+     * Checks to see if its valid to put this block at the specified coordinates. Args: world, x, y, z
+     */
+    @Override
+    public boolean canPlaceBlockAt(World p_149742_1_, int p_149742_2_, int p_149742_3_, int p_149742_4_)
+    {
+        return p_149742_3_ >= p_149742_1_.getHeight() - 1 ? false : World.doesBlockHaveSolidTopSurface(p_149742_1_, p_149742_2_, p_149742_3_ - 1, p_149742_4_) && super.canPlaceBlockAt(p_149742_1_, p_149742_2_, p_149742_3_, p_149742_4_);
+    }
+    
+    /**
+     * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
+     * their own) Args: x, y, z, neighbor Block
+     */
+    @Override
+    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_) {
+    	boolean flag = false;
+    	
+    	if (!World.doesBlockHaveSolidTopSurface(p_149695_1_, p_149695_2_, p_149695_3_ - 1, p_149695_4_))
+        {
+            p_149695_1_.setBlockToAir(p_149695_2_, p_149695_3_, p_149695_4_);
+            flag = true;
+        }
+    	
+    	if (flag)
+        {
+            if (!p_149695_1_.isRemote)
+            {
+                this.dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, 0, 0);
+            }
+        }
+    }
+    
+    /**
+     * Ticks the block if it's been scheduled
+     */
+    @Override
+    public void updateTick(World world, int x, int y, int z, Random p_149674_5_) {
+    	if (world.getGameRules().getGameRuleBooleanValue("doFireTick"))
+        {
+    		world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world) + p_149674_5_.nextInt(10));
+    		
+    		if(world.getBlock(x, y + 1, z).isFlammable(world, x, y, z, ForgeDirection.UP)){
+    			world.setBlock(x, y + 1, z, Blocks.fire, 15, 3);
+    		}
         }
     }
 }
