@@ -13,8 +13,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -65,26 +68,29 @@ public class BlockFirepit extends BlockContainer implements ITileEntityProvider{
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World p_149734_1_, int p_149734_2_, int p_149734_3_, int p_149734_4_, Random p_149734_5_)
     {
-    	//Sound
-    	if (p_149734_5_.nextInt(24) == 0)
-        {
-            p_149734_1_.playSound((double)((float)p_149734_2_ + 0.5F), (double)((float)p_149734_3_ + 0.5F), (double)((float)p_149734_4_ + 0.5F), "fire.fire", 1.0F + p_149734_5_.nextFloat(), p_149734_5_.nextFloat() * 0.7F + 0.3F, false);
-        }
-    	
-    	//Partikel
-    	int l;
-        float f;
-        float f1;
-        float f2;
-    	
-    	for (l = 0; l < 3; ++l)
-        {
-    		f = (float)p_149734_2_ + p_149734_5_.nextFloat();
-            f1 = (float)p_149734_3_ + p_149734_5_.nextFloat() * 0.5F + 0.5F;
-            f2 = (float)p_149734_4_ + p_149734_5_.nextFloat();
-            p_149734_1_.spawnParticle("largesmoke", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
-            p_149734_1_.spawnParticle("flame", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
-        }
+    	if (p_149734_1_.getBlockMetadata(p_149734_2_, p_149734_3_, p_149734_4_) == 1) {
+	    	//Sound
+	    	if (p_149734_5_.nextInt(24) == 0)
+	        {
+	            p_149734_1_.playSound((double)((float)p_149734_2_ + 0.5F), (double)((float)p_149734_3_ + 0.5F), (double)((float)p_149734_4_ + 0.5F), "fire.fire", 1.0F + p_149734_5_.nextFloat(), p_149734_5_.nextFloat() * 0.7F + 0.3F, false);
+	        }
+	    	
+	    	//Partikel
+	    	int l;
+	        float f;
+	        float f1;
+	        float f2;
+	        float offset = 0.2F;
+	    	
+	    	for (l = 0; l < 3; ++l)
+	        {
+	    		f = (float)p_149734_2_ + p_149734_5_.nextFloat() - offset;
+	            f1 = (float)p_149734_3_ + p_149734_5_.nextFloat() * 0.5F + 0.5F - offset;
+	            f2 = (float)p_149734_4_ + p_149734_5_.nextFloat() - offset;
+	            p_149734_1_.spawnParticle("largesmoke", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
+	            p_149734_1_.spawnParticle("flame", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
+	        }
+    	}
     }
     
     /**
@@ -132,5 +138,18 @@ public class BlockFirepit extends BlockContainer implements ITileEntityProvider{
     			world.setBlock(x, y + 1, z, Blocks.fire, 15, 3);
     		}
         }
+    }
+    
+    // Lit the Fire!
+    @SideOnly(Side.CLIENT)
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
+    {	
+    	if((player.getEquipmentInSlot(0) != null) && (player.getEquipmentInSlot(0).getItem() == Items.flint_and_steel)) {
+    		player.getEquipmentInSlot(0).damageItem(1, player);
+    		world.setBlockMetadataWithNotify(x, y, z, 1, 2);
+    		this.randomDisplayTick(world, x, y, z, new Random());
+    	}
+    	return true;
     }
 }
