@@ -13,12 +13,14 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -29,12 +31,11 @@ public class BlockFirepit extends BlockContainer implements ITileEntityProvider{
 	public BlockFirepit() {
 		super(Material.wood);
 		setBlockName("firepit");
-		
 		setLightLevel(1.0F);
 		setLightOpacity(0);
 		this.setTickRandomly(true);
 	}
-	
+
 	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
 		return ItemLoader.firepitItem;
 	}
@@ -84,8 +85,8 @@ public class BlockFirepit extends BlockContainer implements ITileEntityProvider{
 	    	
 	    	for (l = 0; l < 3; ++l)
 	        {
-	    		f = (float)p_149734_2_ + p_149734_5_.nextFloat() - offset;
-	            f1 = (float)p_149734_3_ + p_149734_5_.nextFloat() * 0.5F + 0.5F - offset;
+	    		f = (float)p_149734_2_ + p_149734_5_.nextFloat();
+	            f1 = (float)p_149734_3_ + p_149734_5_.nextFloat() * 0.5F + 0.5F;
 	            f2 = (float)p_149734_4_ + p_149734_5_.nextFloat() - offset;
 	            p_149734_1_.spawnParticle("largesmoke", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
 	            p_149734_1_.spawnParticle("flame", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
@@ -151,5 +152,43 @@ public class BlockFirepit extends BlockContainer implements ITileEntityProvider{
     		this.randomDisplayTick(world, x, y, z, new Random());
     	}
     	return true;
+    }
+    
+    /**
+     * Get a light value for the block at the specified coordinates, normal ranges are between 0 and 15
+     *
+     * @param world The current world
+     * @param x X Position
+     * @param y Y position
+     * @param z Z position
+     * @return The light value
+     */
+    @Override
+    public int getLightValue(IBlockAccess world, int x, int y, int z)
+    {
+        return world.getBlockMetadata(x, y, z) == 1 ? 15 : 0;
+    }
+    
+    /**
+     * Determines if this block should set fire and deal fire damage
+     * to entities coming into contact with it.
+     *
+     * @param world The current world
+     * @param x X Position
+     * @param y Y position
+     * @param z Z position
+     * @return True if the block should deal damage
+     */
+    @Override
+    public boolean isBurning(IBlockAccess world, int x, int y, int z)
+    {
+        return world.getBlockMetadata(x, y, z) == 1 ? true : false;
+    }
+    
+    @SideOnly(Side.CLIENT)
+    @Override
+    public boolean addDestroyEffects(World world, int x, int y, int z, int meta, EffectRenderer effectRenderer)
+    {
+        return true;
     }
 }
