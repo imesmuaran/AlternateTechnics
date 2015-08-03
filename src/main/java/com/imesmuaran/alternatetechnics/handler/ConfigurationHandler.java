@@ -39,8 +39,5 @@ public class ConfigurationHandler
             }
 
         }
-
-        System.out.println(statusLeben);
-
     }
 }
