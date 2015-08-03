@@ -3,12 +3,15 @@ package com.imesmuaran.alternatetechnics.blocks;
 import java.util.Random;
 
 import com.imesmuaran.alternatetechnics.AlternateTechnics;
+import com.imesmuaran.alternatetechnics.tileentities.TEFirepit;
 import com.imesmuaran.alternatetechnics.items.ItemLoader;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,8 +26,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 
 
-public class BlockFirepit extends Block {
-
+public class BlockFirepit extends BlockContainer implements ITileEntityProvider{
+	
 	public BlockFirepit() {
 		super(Material.wood);
 		setBlockName("firepit");
@@ -35,6 +38,11 @@ public class BlockFirepit extends Block {
 
 	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
 		return ItemLoader.firepitItem;
+	}
+	
+	@Override
+	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
+		return new TEFirepit();
 	}
 	
 	@Override
