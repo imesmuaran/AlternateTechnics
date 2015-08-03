@@ -1,0 +1,8 @@
+# Ignore following files and directories:
+.*
+bin/
+eclipse/mods/
+gradlew
+
+# Exceptions
+!.gitignore
