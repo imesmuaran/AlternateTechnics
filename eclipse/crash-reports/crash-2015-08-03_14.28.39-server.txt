@@ -1,0 +1,79 @@
+---- Minecraft Crash Report ----
+// Why is it breaking :(
+
+Time: 03.08.15 14:28
+Description: Exception ticking world
+
+java.lang.RuntimeException: class com.imesmuaran.alternatetechnics.tileentities.TEBucket is missing a mapping! This is a bug!
+	at net.minecraft.tileentity.TileEntity.writeToNBT(TileEntity.java:96)
+	at com.imesmuaran.alternatetechnics.tileentities.TEBucket.writeToNBT(TEBucket.java:27)
+	at com.imesmuaran.alternatetechnics.tileentities.TEBucket.getDescriptionPacket(TEBucket.java:20)
+	at net.minecraft.server.management.PlayerManager$PlayerInstance.sendTileToAllPlayersWatchingChunk(PlayerManager.java:632)
+	at net.minecraft.server.management.PlayerManager$PlayerInstance.sendChunkUpdate(PlayerManager.java:574)
+	at net.minecraft.server.management.PlayerManager.updatePlayerInstances(PlayerManager.java:80)
+	at net.minecraft.world.WorldServer.tick(WorldServer.java:193)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:692)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:614)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:118)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:485)
+	at net.minecraft.server.MinecraftServer$2.run(MinecraftServer.java:752)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at net.minecraft.tileentity.TileEntity.writeToNBT(TileEntity.java:96)
+	at com.imesmuaran.alternatetechnics.tileentities.TEBucket.writeToNBT(TEBucket.java:27)
+	at com.imesmuaran.alternatetechnics.tileentities.TEBucket.getDescriptionPacket(TEBucket.java:20)
+	at net.minecraft.server.management.PlayerManager$PlayerInstance.sendTileToAllPlayersWatchingChunk(PlayerManager.java:632)
+	at net.minecraft.server.management.PlayerManager$PlayerInstance.sendChunkUpdate(PlayerManager.java:574)
+	at net.minecraft.server.management.PlayerManager.updatePlayerInstances(PlayerManager.java:80)
+	at net.minecraft.world.WorldServer.tick(WorldServer.java:193)
+
+-- Affected level --
+Details:
+	Level name: New World
+	All players: 1 total; [EntityPlayerMP['Player676'/187, l='New World', x=65,12, y=69,63, z=279,47]]
+	Chunk stats: ServerChunkCache: 625 Drop: 0
+	Level seed: -5746648126374091259
+	Level generator: ID 00 - default, ver 1. Features enabled: true
+	Level generator options: 
+	Level spawn location: World: (36,64,252), Chunk: (at 4,4,12 in 2,15; contains blocks 32,0,240 to 47,255,255), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Level time: 63991 game time, 346350 day time
+	Level dimension: 0
+	Level storage version: 0x04ABD - Anvil
+	Level weather: Rain time: 83867 (now: false), thunder time: 115113 (now: false)
+	Level game mode: Game mode: survival (ID 0). Hardcore: false. Cheats: false
+Stacktrace:
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:692)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:614)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:118)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:485)
+	at net.minecraft.server.MinecraftServer$2.run(MinecraftServer.java:752)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.7.10
+	Operating System: Linux (amd64) version 3.19.0-25-generic
+	Java Version: 1.7.0_79, Oracle Corporation
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 695606880 bytes (663 MB) / 1038876672 bytes (990 MB) up to 1038876672 bytes (990 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	AABB Pool Size: 0 (0 bytes; 0 MB) allocated, 0 (0 bytes; 0 MB) used
+	IntCache: cache: 0, tcache: 0, allocated: 12, tallocated: 94
+	FML: MCP v9.05 FML v7.10.99.99 Minecraft Forge 10.13.4.1448 6 mods loaded, 6 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+	UCHIJAAAA	mcp{9.05} [Minecraft Coder Pack] (minecraft.jar) 
+	UCHIJAAAA	FML{7.10.99.99} [Forge Mod Loader] (forgeSrc-1.7.10-10.13.4.1448-1.7.10.jar) 
+	UCHIJAAAA	Forge{10.13.4.1448} [Minecraft Forge] (forgeSrc-1.7.10-10.13.4.1448-1.7.10.jar) 
+	UCHIJAAAA	CodeChickenCore{1.0.4.29} [CodeChicken Core] (minecraft.jar) 
+	UCHIJAAAA	NotEnoughItems{1.0.3.74} [Not Enough Items] (NotEnoughItems-1.7.10-1.0.3.74-universal.jar) 
+	UCHIJAAAA	alternatetechnics{1.7.10-0.5.1} [Alternate Technics] (bin) 
+	GL info: ~~ERROR~~ RuntimeException: No OpenGL context found in the current thread.
+	Profiler Position: N/A (disabled)
+	Vec3 Pool Size: 0 (0 bytes; 0 MB) allocated, 0 (0 bytes; 0 MB) used
+	Player Count: 1 / 8; [EntityPlayerMP['Player676'/187, l='New World', x=65,12, y=69,63, z=279,47]]
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'fml,forge'

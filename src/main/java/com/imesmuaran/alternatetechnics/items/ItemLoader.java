@@ -10,6 +10,7 @@ public class ItemLoader
     public static Item burgerItem;
     public static Item droidItem;
     public static Item firepitItem;
+    public static Item bucketItem;
 
     public static void Items()
     {
@@ -19,7 +20,8 @@ public class ItemLoader
         GameRegistry.registerItem(droidItem, "droidItem");
         firepitItem =new ItemFirepit();
         GameRegistry.registerItem(firepitItem, "firepitItem");
-        
+        bucketItem = new ItemBucket();
+        GameRegistry.registerItem(bucketItem, "bucketItem");
         
         LogHelper.info("Items loaded!");
 

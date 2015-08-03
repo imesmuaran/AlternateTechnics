@@ -11,6 +11,7 @@ public class TileEntityLoader extends BlockLoader
         GameRegistry.registerTileEntity(TEVerticalConveyor.class, "verticalConveyor");
         GameRegistry.registerTileEntity(TEWaterwheelBase.class, "waterwheelBase");
         GameRegistry.registerTileEntity(TEFirepit.class, "firepit");
+        GameRegistry.registerTileEntity(TEBucket.class, "cheeseBucket");
         LogHelper.info("TileEntities loaded!");
     }
 }

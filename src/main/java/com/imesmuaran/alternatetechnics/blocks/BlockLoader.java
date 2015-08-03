@@ -7,9 +7,6 @@ import net.minecraft.block.material.Material;
 
 public class BlockLoader
 {
-
-
-
     //** Block Init **//
     public static Block cheeseBlock;
     public static Block burgerBlock;
@@ -28,7 +25,7 @@ public class BlockLoader
         GameRegistry.registerBlock(verticalConveyor, "verticalConveyor");
         waterwheelBase = new BlockWaterwheelBase(Material.iron);
         GameRegistry.registerBlock(waterwheelBase, "waterwheelBase");
-        bucketBlock = new BlockBucket(Material.iron);
+        bucketBlock = new BlockBucket();
         GameRegistry.registerBlock(bucketBlock, "bucketBlock");
         firepitBlock = new BlockFirepit();
         GameRegistry.registerBlock(firepitBlock, "firepit");
